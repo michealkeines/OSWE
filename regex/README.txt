@@ -109,46 +109,4 @@ eg: ^test is best$ - this will only take sentence starting with test and ending 
     The Kleene plus, denoted by the plus +, matches the preceding character 1 or more times
 
     The anchor symbols hat ^ and dollar sign $ are used to match text at the start and end of a string, respectively
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
  
