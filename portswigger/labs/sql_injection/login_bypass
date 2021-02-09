@@ -1,0 +1,3 @@
+here we are just commenting out rest of the sql query which check the password thus allowing as to login as any user
+
+select * from users where username = 'admin'--' and password = 'pass';
