@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
+# Exploiting blind SQL injection by triggering conditional responses
 import requests
 import sys
 import string
