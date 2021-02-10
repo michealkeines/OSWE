@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
+# Inducing conditional responses by triggering SQL errors
 import requests
 import sys
 import string
