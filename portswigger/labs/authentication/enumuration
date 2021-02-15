@@ -1,0 +1,20 @@
+Users often take a password that they can remember and try to crowbar it into fitting the password policy.
+
+eg: if mypassword is not allowed, users may try something like Mypassword1! and update them regularly like Mypassword2! and so on
+
+Username enumeration:
+
+is when an attackerr is able to observer changes in the website's behavior in order to indentiy whether a given username is valid.
+
+in registration forms when you enter a username that is already taken... we get that that username is there...
+
+Status codes: if a guess returns a different status code
+
+Error messages: verbose error messages in case of a wrong username
+
+subtible difference: sometimes the loaded page for valid username might be 1or2 chars different from a invalid username, this can be used to infer valid usernames
+
+Response times: a website might check whether the password is correct if the username is valid, this extra step might cause a slight increase in response time, but an attacker can make this delay more obvious by entering an excessively long password that the website takes noticebly longer to handle...
+
+
+

@@ -1,0 +1,7 @@
+if X-Forwarded header is accepted we can use that to spoof diffrent ip
+
+X-Forwarded-For: 203.0.113.125
+
+if the site checks for attempts, if the limit is 3, make two try requests and then make a vaild requests, thus we can brute force infinite times without getting blocked
+
+
