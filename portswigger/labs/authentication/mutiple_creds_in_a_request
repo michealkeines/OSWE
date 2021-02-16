@@ -1,0 +1,6 @@
+if the password implementation is flawed we can pass a array of password in a single request thus the back end does the brute forcing for us
+
+eg:     {
+		"Username" : "test",
+		"Password" : ["all","the","passwords","to test","placed here"]
+	}
