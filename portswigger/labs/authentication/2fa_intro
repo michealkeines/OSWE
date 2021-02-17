@@ -1,0 +1,12 @@
+something you know - password
+something you have - mobile 
+
+its is possible to bypass the 2fa code if implemented badly
+
+if the OTP is got in next page, youre techincally logged in already, this could be abused
+
+login ---> Enter otp just leave that page open and start a new page, your session will be the victim account, thus you have bypassed the otp
+
+login ---> sets a cookie with username and requests otp, an attacker could brute fore the otp with username set as victim and get their session.
+
+
