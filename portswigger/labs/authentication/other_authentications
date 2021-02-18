@@ -1,0 +1,11 @@
+changing password, reseting passwords
+
+the persistent cookies should not have easyly guessed patter which a attaacker can decode and make new one to brute force his way finding valid cookies
+
+eniretly random long strings can be used in this case 
+
+reset password url token should be strong and random with reference to the respective user in server side
+
+same token shouldlnt let reset other users password
+
+
