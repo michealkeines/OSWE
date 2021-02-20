@@ -1,2 +1,23 @@
 ASCII
 	every character is represented using a number between 32 and 127
+
+till 128 everyone followed ANSI standard, above that there are diffenent system based on the country you live
+
+UNICODE
+
+	every platonic letter in every alphabet is assigned a magic number by the unicode consortium
+eg:
+	U+0041 ----> A and this is just a code point, how it is stored in memory is where endcoding comes into play
+
+'U+' is UNICODE, rest is hexdecimal equivalent
+
+UTF-7,8,16,32
+	
+	UTF 7, 8, 16, and 32 all have the nice property of being able to store any code point correctly.
+
+
+Things to remember:
+	it does not make sense to have a string without knowing what encoding it uses
+	there is no such things as plain text
+	If you have a string, in memory, in a file, or in an email message, you have to know what encoding it is in or you cannot interpret it or display it to users correctly.
+
