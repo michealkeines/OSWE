@@ -73,7 +73,11 @@ the site checks if the coupon is applied based on the previously applied coupon,
 
 coupon reuse able flawed check lets us, add more credits
 
+if a endpoint is encrypting user input and another endpoint decrypts user input then it can be used to create decrypt session and get structures of valid accounts
 
+administrator:1614002661049 ---> admin with timestamp is encrypted as the keeplogged in cookies, as we can encrypt and decypt user input, we send this and get the valid decrypted token which can be used to get elevated privilages
+
+Tx93EO5oeG9p7+T6zgfPYq2RwTkoD1DeUadN//3HAe0=
 
 
 
