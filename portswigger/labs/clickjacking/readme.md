@@ -2,7 +2,7 @@ Click Jacking:
 
 	Target website iframe is positioned within the browser so that there is a perscie overlap of the target action with the decoy website using appropriate width and height position values. Absolute and relative values are used to ensure that the target website accurately overlaps the decoy regardless of screen size, opacity value is defined as 0.0 so that the iframe content is transparent
 
-"<style>
+```<style>
    iframe {
        position:relative;
        width: 500px;
@@ -18,7 +18,7 @@ Click Jacking:
    }
 </style>
 <div>Click me</div>
-<iframe src="https://aca61f401fcdc06a80fe1e5300ba00df.web-security-academy.net/my-account"></iframe>"
+<iframe src="https://aca61f401fcdc06a80fe1e5300ba00df.web-security-academy.net/my-account"></iframe>```
 
 modern browser use frame buster scripts to find invisble frames and other potentaial clickjacking, but most of it can be bypassed by using iframe sandbox feature, that allows scripts and forms with getting caught
 
