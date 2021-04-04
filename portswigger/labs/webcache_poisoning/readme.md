@@ -43,6 +43,8 @@ then again if we make the first request we will get the cached response with por
 
 	if a unkeyed parameter is dynamically added to the page, ti can lead to cache posison, making refective xss more severe
 
+	Pragma: x-get-cache-key
+
 parameter cloaking
 
 	/?actuam=test?exculeded_param=payload
