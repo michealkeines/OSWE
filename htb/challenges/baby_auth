@@ -1,0 +1,3 @@
+PHPSESSID={"username":"admin"}
+
+session is validated based on the usercontrolled cookie

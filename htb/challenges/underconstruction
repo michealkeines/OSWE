@@ -1,0 +1,5 @@
+jwt token, key confusion
+
+we can use the public key to forge a valid token
+
+username feild is sql injectable

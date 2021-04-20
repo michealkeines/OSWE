@@ -1,0 +1,5 @@
+we can create our own nginx config file,
+also there is a /storage rotue
+adding autoindex on to the route lets us get directory listing, thus we are able to get he backup sqlite file
+and get hashes of admin
+HTB{ng1ngx_r34lly_b3_sp1ll1ng_my_w3ll_h1dd3n_s3cr3ts??}

