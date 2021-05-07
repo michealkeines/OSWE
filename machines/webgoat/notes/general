@@ -14,4 +14,8 @@ General:
 	openssl rsa -in priv -pubout // get public key from the private key
 
 	openssl rsa -pubin -in pub -modulus -noout // get modules value
-	openssl dgst -sha256 -sign priv mod | base64 // sign the value	
+	openssl dgst -sha256 -sign priv mod | base64 // sign the value
+
+	sudo docker exec -u 0 023b6e55f9cb cat /root/default_secret
+
+		

