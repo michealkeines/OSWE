@@ -1,0 +1,18 @@
+XML external entities
+
+	public ObjectMapper create() {
+  		return new XmlMapper(xmlInputFactory());  
+	}	
+
+private static XMLInputFactory xmlInputFactory() {
+  	XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+  	inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+  	inputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+  	return inputFactory;
+}
+
+XMLInputFactory xif = XMLInputFactory.newFactory();
+xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+xif.setProperty(XMLInputFactory.SUPPORT_DTD, true);
+
+disable external entities and dtd support in the xmlparser instance
