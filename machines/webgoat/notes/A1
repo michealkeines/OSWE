@@ -52,3 +52,20 @@ seselectlect --> select
 
 prepared statements cant be used in case of oderby or tablename, in those case , you need to whitelist the needed values
 
+Path traversal:
+
+	fullname is take as path name without any filtering, thus 
+../../../../../test 	
+super.execute(file, fullName != null ? fullName.replace("../", "") : "");
+
+....//....//....// --> ../../../
+
+file name was taken this time
+
+id param is used to get the file name and .jpg is added to it, we use url encoding to bypass the .. and / contains check
+
+../../path-traversal-secret
+sha512sum of my username
+
+
+
