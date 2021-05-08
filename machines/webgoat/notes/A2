@@ -1,0 +1,47 @@
+Broken Authentication:
+
+if (paramName.contains("secQuestion")) {
+                userAnswers.put(paramName, req.getParameter(paramName));
+            } // hash map is updated by checking if the string contains "secQuestion"
+
+if (submittedQuestions.entrySet().size() != secQuestionStore.get(verifyUserId).size()) {
+            return false;
+        }
+
+        if (submittedQuestions.containsKey("secQuestion0") && !submittedQuestions.get("secQuestion0").equals(
+            secQuestionStore.get(verifyUserId).get("secQuestion0"))) {
+            return false;
+        }
+
+        if (submittedQuestions.containsKey("secQuestion1") && !submittedQuestions.get("secQuestion1").equals(
+            secQuestionStore.get(verifyUserId).get("secQuestion1"))) {
+            return false;
+        }
+
+vertification checks if 
+-> hashmap lenght is 2	
+-> contains secQuestion0
+-> contains secQuestion1
+
+thus change the secQuestion0 and secQestion1 to differnt interger 
+thus bypassing the check to return true
+
+jwt token doesnt check for if algo is used, if we pass none, it doesnt check for the signature
+
+{"alg":"None"}.{"iat":1621323933,"admin":"true","user":"Tom"}
+
+the refresh token is not properly associated with the accesstoken it is supposed to refresh, thus attacker refresh token can refresf aold victims access token
+
+ if (user == null || refreshToken == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        } else if (validRefreshTokens.contains(refreshToken)) {
+            validRefreshTokens.remove(refreshToken);
+            return ok(createNewTokens(user));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+{"typ":"JWT","kid":"webgoat_key' UNION SELECT 'dGVzdA==' FROM jwt_keys -- ","alg":"HS256"}        }
+
+sql injection in kid fild lets us update the key to our own key and thus able to forge any token
+
+Modifing the host header lets us change the dynamically created password reset link
