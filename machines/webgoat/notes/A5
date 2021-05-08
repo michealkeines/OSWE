@@ -1,0 +1,6 @@
+Broken Access Control
+	DOR is more of a 'horizontal' or 'lateral' access control issue, and missing function level access control 'exposes functionality'
+
+	Check association between who is accessing what in every request without any exception
+
+
