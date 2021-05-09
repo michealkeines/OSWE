@@ -1,0 +1,12 @@
+Cross Site Scripting
+
+	Search fields that echo a search string back to the user
+	input fields that echo user data
+	error messages that return user supplied text
+	hidden fields that contain user supplied data
+	Any page that displays user input
+	HTTP headers
+
+output encode all input that is gonna be displayed
+
+input validation after decoding the encoded values

