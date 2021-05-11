@@ -1,0 +1,5 @@
+Server Side Request Forgery
+
+	Use a whitelist of allowed domains, resources form where the webserver can fetch resources.
+
+	if possible do not accept user input in functions that control where webserver can fetch resources
