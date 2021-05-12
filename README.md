@@ -1,1 +1,1 @@
-Collection of learnig materials for OSWE preparation
+Collection of learning materials for OSWE preparation
