@@ -1,0 +1,24 @@
+Cross Site Scripting
+
+Stored:
+
+	DataSet ds = du.GetComments("user_cmt");
+	string comments = string.Empty;
+	foreach (DataRow row in ds.Tables[0].Rows)
+	{
+		comments += "<strong>Email:</strong>" + row["email"] + "<span style='font-size: x-small;color: #E47911;'> (Email Address Verified!) </span><br/>";
+	comments += "<strong>Comment:</strong><br/>" + row["comment"] + "<br/><hr/>";
+	}
+	lblComments.Text = comments;
+
+	the values are added without HtmlEncode()
+
+
+Reflected:
+
+	LoadCity(Request["city"]);
+	lblOutput.Text = "Here are the details for our " + city + " Office";
+
+	the city variable is concatinated to the output string withour HtmlEncode()
+
+

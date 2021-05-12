@@ -1,0 +1,63 @@
+Page state : the state of the client, i.e tha content of various input fields in the web form
+
+Session state: the collective information obtained from all the pages the users visited, i.e, the overall session state
+
+The asp.net transforms the aspx page into an instance of a class, which inherits from the base class of .Net framework,
+
+therefore,
+	Each asp.net page is an object and all its components i.e, the server-side controls are also objects.
+
+Default.aspx --> html, asp code
+Default.aspx.cs --> contains the c# server side data manipulation code
+
+@Page directive defines the page specific attributes
+
+<% @Page Language="C#" CodeBehind="Default.aspx.cs" Inherits="test.test.Default"%>
+
+Language = language used
+CodeBehind = filename of the server code
+Inherits = class name
+
+<html>
+   <head> 
+      <title> Change to Upper Case </title> 
+   </head>
+   
+   <body>
+      <h3> Conversion to Upper Case </h3>
+      
+      <form runat="server">
+         <input runat="server" id="mytext" type="text" /> 
+         <hr />
+         <h3> Results: </h3>
+         <span runat="server" id="changed_text" />
+      </form>
+      
+   </body>
+   
+</html>
+
+
+    Session
+    Application
+    Cache
+    Request
+    Response
+    Server
+    User
+    Trace
+
+these are the available for objects for all the pages
+
+the html tags are not always processed in server side, thus they wer specifically converted to a server side control by adding runat="server" and a id attribute to refer to it
+
+<input type="text"> //wont be processed in serverside
+
+<input type="text" runat="server"> //will be sent to server
+
+hidden __viewstate feilds are added dynamically 
+
+
+
+
+

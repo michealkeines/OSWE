@@ -1,0 +1,5 @@
+import requests
+
+data_provider="Sqlite"
+Data_file_path="db.sqlite3"
+Client_Executable="/usr/bin/sqlite3"

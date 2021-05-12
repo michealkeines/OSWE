@@ -1,0 +1,12 @@
+Broken Authentication
+
+string sql = "select SecurityQuestions.question_text, CustomerLogin.answer from CustomerLogin, " + 
+                "SecurityQuestions where CustomerLogin.email = '" + email + "' and CustomerLogin.question_id = " +
+                "SecurityQuestions.question_id;";
+
+raw sql query concatinated with user input
+
+bypass the first step with "'or 1=1--"
+
+
+

@@ -1,0 +1,5 @@
+Using hash function that are known to be prone to hash collusions is not a good practice
+
+as of now md5,sha1 hash functions are considered as insecure to use in real projects to test integrety
+
+coded custom ecryption might lead to logic issues if now implemented properly

