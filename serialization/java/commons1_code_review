@@ -1,0 +1,56 @@
+Payload: commoncollections1
+
+Transformer:
+	input object is converted into ouput object
+
+	public interface Transformer {
+    		public Object transform(Object input);
+	}
+
+ConstantTransformer:
+	returns a object of the class passed to it
+
+	public Object transform(Object input) {
+    		return iConstant;
+	}
+
+
+InvokeTransformer:
+	Invokes a method on the input object
+
+	Class cls = input.getClass();
+        Method method = cls.getMethod(iMethodName, iParamTypes);
+        return method.invoke(input, iArgs);
+
+initially readObject is called in AnnotationInvocationHandler
+
+	for (Map.Entry<String, Object> memberValue : memberValues.entrySet())
+	which calls map(proxy).entrySet();
+
+as the entrySet() call wil fail, we will and a proxy to it that it calls invoke() method which has the get() call 
+
+	Object result = memberValues.get(member);
+
+thus object.get() is called in every member 
+	
+	intitial we will call it with a random key
+
+	if (map.containsKey(key) == false) { //thus it get into this loop and calls the factory.transform()
+        	Object value = factory.transform(key);
+        	map.put(key, value);
+        	return value;
+    	}
+
+	factor = our tranformer chain
+thus it iterates through all of them and Tranformers.tranform() is called with the previes result object as input
+
+	for (int i = 0; i < iTransformers.length; i++) {
+        object = iTransformers[i].transform(object);
+    	}
+	every transformer result is passed to the next tranformer object
+	thus making the chain possible to get code execution
+
+
+
+
+

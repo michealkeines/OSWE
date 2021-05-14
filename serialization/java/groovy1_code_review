@@ -45,6 +45,8 @@ so our first parameter shoudl be of AnnotationType, which is done using Override
 
 Now we use java proxy to enter someother class for the second parmater
 
+when a proxy class i called it ivokes the invoke() method
+
 When a proxy object is invoked, the proxy decides if it has to invoke the original method or some handler, the handler may do its taks and may also call the orignal method
 
 Map test = (Map) Proxy.newProxyInstance(test.class.getClassLoader(), new Class[] {Map.class}, handler);
@@ -54,6 +56,28 @@ This creates a Proxy object of map type that we pass as second parameter
 when the second_parameter.entrySet() method is called when the our payload is deserialized, our proxy invokes the handler
 
 now we have to find a good handler that can do something intersting
+
+ConvertedClosure extends ConversionHandler which implements invocationHandler, thus we call the invoke method in this class
+
+	return invokeCustom(proxy, method, args); // the invoke method call invokeCustom method wihc defined by the child class
+
+	if (methodName!=null && !methodName.equals(method.getName())) return null;
+        return ((Closure) getDelegate()).call(args);
+
+	getDelegate() returns delegate which is assiged to a object
+
+	which we can initilize to our MethodClosure object
+
+	object.call(args) is called
+
+	which returns (V)getMetaClass().invokeMethod(this, "doCall", args)
+        thus calling MethodClosure.doCall(args)
+
+	doCall method calls
+
+	public static Object invokeMethod(Object object, String methodName, Object arguments)
+
+	which inturn call the finall exec function
 
 groovy can create anonymous function using closure class
 
@@ -85,7 +109,10 @@ when our payload get deserialized,
 
 -> readObject implemenation calls entrySet() in all objects of map
 
--> we have replaced the map object with a proxy that has closure object which has a definition for entrySet()
+-> we have replaced the map object with a proxy
+
+-> invoke() method is called on closure object which then call method clousre object which has the anon function defined as entrySet()
+
 
 thus we get code execution
 
