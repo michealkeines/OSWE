@@ -1,0 +1,74 @@
+ObjectDataProvider class can serialized to invoke arbirtary methods
+
+it takes, 
+
+	_objectInstance, _methodName, _methodParameters
+
+MethodName setter calls base.Refresh();
+	set
+	{
+		this._methodName = value;
+		this.OnPropertyChanged("MethodName");
+		if (!base.IsRefreshDeferred)
+		{
+			base.Refresh();
+		}
+	}
+
+Refresh() calls BeginQuery();
+
+	public void Refresh()
+	{	
+		this._initialLoadCalled = true;
+		this.BeginQuery();
+	}
+
+BeginQuery() calls QueryWorker();
+
+	protected override void BeginQuery()
+	{
+		//reducted
+		this.QueryWorker(null);
+	}
+
+QueryWorker() creates a object of the class and called InvokeMethodInstance() on it
+
+	if (this._needNewInstance && this._mode == ObjectDataProvider.SourceMode.FromType)
+	{
+		ConstructorInfo[] constructors = this._objectType.GetConstructors();
+		if (constructors.Length != 0)
+		{
+			this._objectInstance = this.CreateObjectInstance(out ex2);
+		}
+		this._needNewInstance = false;
+	}
+	if (string.IsNullOrEmpty(this.MethodName))
+	{
+		obj2 = this._objectInstance;
+	}
+	else
+	{
+		obj2 = this.InvokeMethodOnInstance(out ex);
+	}
+
+InvokeMethodOnInstance() invokes the arbitary method
+
+	object[] array = new object[this._methodParameters.Count];
+	this._methodParameters.CopyTo(array, 0);
+
+	try
+	{
+		result = this._objectType.InvokeMember(this.MethodName, BindingFlags.Instance, null, this._objectInstance, array);
+	}
+
+Exploitation:
+
+	we have a class that can be deserialized to get RCE, but to deserialize this class we have specifiy the _objectInstance varaible a valid (process type) if not it will take the instance type from super class
+
+	thus we use ExpandedWrapper class, which specify the object types of the objects that are encapsulated in a given instance, thus will be able to explicitly specify our requirement
+
+	ExpandedWrapper<Process, ObjectDataProvider> test = new ExpendedWrapper<Process, ObjectDataProvider>();
+
+
+
+
